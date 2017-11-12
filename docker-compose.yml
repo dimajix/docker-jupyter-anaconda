@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  jupyter-notebook:
+    hostname: jupyter-notebook
+    container_name: dmx-jupyter-notebook
+    image: dimajix/jupyter-anaconda:4.3.30
+    command: notebook
+    build:
+      context:  .
+      args:
+        http_proxy: ${http_proxy}
+        https_proxy: ${https_proxy}
+    env_file:
+      - docker-compose.env
+    environment:
+      - http_proxy=${http_proxy}
+      - https_proxy=${https_proxy}
+    expose:
+      - 8888
+    ports:
+      - 8888:8888
+
+networks:
+  default:
+    external:
+      name: dimajix
+
