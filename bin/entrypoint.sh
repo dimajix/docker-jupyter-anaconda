@@ -12,10 +12,11 @@ start_notebook() {
 }
 
 
-start_singleuser() {
+start_as_jupyter() {
     chown -R jupyter ${JUPYTER_NOTEBOOK_DIR}
     sudo -E -u jupyter env PATH=$PATH HOME=${JUPYTER_NOTEBOOK_DIR} $@
 }
+
 
 
 case "$1" in
@@ -23,7 +24,10 @@ case "$1" in
         start_notebook
         ;;
     "jupyterhub-singleuser")
-        start_singleuser $@
+        start_as_jupyter $@
+        ;;
+    "jupyter-labhub")
+        start_as_jupyter $@
         ;;
     *)
         exec $@

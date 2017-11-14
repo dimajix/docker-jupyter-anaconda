@@ -1,7 +1,7 @@
 FROM dimajix/miniconda:4.3.30
 MAINTAINER k.kupferschmidt@dimajix.de
 
-RUN conda install --yes -c conda-forge python=3.6 anaconda jupyterhub notebook
+RUN conda install --yes -c conda-forge python=3.6 anaconda jupyterhub jupyterlab notebook
 
 # copy configs and binaries
 COPY bin/ /opt/docker/bin/
